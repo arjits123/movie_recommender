@@ -1,7 +1,7 @@
 # Movie Recommender System
 
 
-DATA --> PREPROESSING --> MODEL DEVELOPMENT --> WEBSITE CREATION --> CI/CD PIPELINE
+## DATA --> PREPROESSING --> MODEL DEVELOPMENT --> WEBSITE CREATION --> CI/CD PIPELINE
 =====================================
 
 ### Data Collection
