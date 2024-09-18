@@ -1,6 +1,6 @@
-import dill
-import pandas as pd
-import streamlit as st
+import dill # type: ignore
+import pandas as pd # type: ignore
+import streamlit as st # type: ignore
 from src.components.recommender import ModelTrainer
 
 movies_dict = dill.load(open('artifacts/transformed_data_dict.pkl', 'rb'))
