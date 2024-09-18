@@ -16,7 +16,7 @@ import numpy as np # type: ignore
 class DataTranformationConfig:
     """Data Transformation Config Class"""
     cleaned_data_path : str = os.path.join('artifacts', 'final_data_set.csv')
-    transformed_data_path: str = os.path.join('artifacts', 'transformed_data.pkl')
+    transformed_data_path: str = os.path.join('artifacts', 'transformed_data_dict.pkl')
 
 class DataTransformation:
     def __init__(self):
@@ -77,7 +77,7 @@ class DataTransformation:
 
             #save the pkl file also
             save_obj(file_path = self.data_transformation_config.transformed_data_path , 
-                     data_frame = new_df )
+                     data_frame = new_df.to_dict())
 
             #saving cleaned csv file
             new_df.to_csv(self.data_transformation_config.cleaned_data_path, index=False, header=True)
