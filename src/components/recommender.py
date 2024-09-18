@@ -45,7 +45,7 @@ class ModelTrainer:
             #Get the movie index
             movie_index = df[df['title'] == movie].index[0]
             distances = similarity_matrix[movie_index]
-            movies_list = sorted(list(enumerate(distances)),key = lambda x: x[1], reverse=True)[1:6]
+            movies_list = sorted(list(enumerate(distances)),key = lambda x: x[1], reverse=True)[1:11]
 
             recommendations = []
             for i in movies_list:
