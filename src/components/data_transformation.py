@@ -5,7 +5,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 from exception import CustomException
 from logger import logging
 from dataclasses import dataclass
-from utils import convert, convert_cast, convert_crew
+from utils import convert, convert_cast, convert_crew, save_obj
 
 # ML libraries
 import pandas as pd # type: ignore
@@ -16,6 +16,7 @@ import numpy as np # type: ignore
 class DataTranformationConfig:
     """Data Transformation Config Class"""
     cleaned_data_path : str = os.path.join('artifacts', 'final_data_set.csv')
+    transformed_data_path: str = os.path.join('artifacts', 'transformed_data.pkl')
 
 class DataTransformation:
     def __init__(self):
@@ -71,6 +72,10 @@ class DataTransformation:
             new_df['tags'] = new_df['tags'].apply(lambda x : x.lower())
 
             logging.info('Data Cleaning and transforming completed')
+
+            #save the pkl file also
+            save_obj(file_path = self.data_transformation_config.transformed_data_path , 
+                     data_frame = new_df )
 
             #saving cleaned csv file
             new_df.to_csv(self.data_transformation_config.cleaned_data_path, index=False, header=True)

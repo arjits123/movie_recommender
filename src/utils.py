@@ -9,6 +9,16 @@ import numpy as np # type: ignore
 import pandas as pd # type: ignore
 import ast
 import dill # type: ignore
+from nltk.stem.porter import PorterStemmer
+
+def save_obj(file_path, data_frame):
+    try:
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path, 'wb') as f:
+            dill.dump(data_frame, f)
+    except Exception as e:
+        pass
 
 def convert(obj):
     new_obj = ast.literal_eval(obj)
@@ -38,4 +48,14 @@ def convert_crew(obj):
             mylist.append(i['name'])
             break
     return mylist
+
+ps = PorterStemmer()
+def stemming(text):
+    
+    y = []
+    
+    for i in text.split():
+        y.append(ps.stem(i))
+        
+    return " ".join(y)
         

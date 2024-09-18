@@ -9,6 +9,7 @@ from dataclasses import dataclass
 
 # import other libraries from other components
 from data_transformation import DataTransformation
+from recommender import ModelTrainer
 
 # ML libraries
 import numpy as np # type: ignore
@@ -53,4 +54,9 @@ if __name__ == "__main__":
 
     #Data transformation 
     data_transformation = DataTransformation()
-    final_data_path = data_transformation.initiate_data_transformation(raw_data_path)
+    final_data_frame = data_transformation.initiate_data_transformation(raw_data_path)
+
+    #recommendation 
+    recommender = ModelTrainer()
+    movie_name = "My Date with Drew"
+    recommender.initiate_recommendation(movie = movie_name, data_path= final_data_frame)
