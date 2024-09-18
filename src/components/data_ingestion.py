@@ -59,4 +59,6 @@ if __name__ == "__main__":
     #recommendation 
     recommender = ModelTrainer()
     movie_name = "My Date with Drew"
-    recommender.initiate_recommendation(movie = movie_name, data_path= final_data_frame)
+    movies = recommender.initiate_recommendation(movie = movie_name, data_path= final_data_frame)
+    for names in movies:
+        print(names)

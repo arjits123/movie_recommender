@@ -71,6 +71,8 @@ class DataTransformation:
             new_df['tags'] = new_df['tags'].apply(lambda x : " ".join(x))
             new_df['tags'] = new_df['tags'].apply(lambda x : x.lower())
 
+            new_df.reset_index(drop=True, inplace = True)
+
             logging.info('Data Cleaning and transforming completed')
 
             #save the pkl file also

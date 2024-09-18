@@ -27,8 +27,6 @@ class ModelTrainer:
     def initiate_recommendation(self, movie:str, data_path):
         try:
             df =  data_path
-            df.reset_index(drop=True, inplace=True) #inplace = True  shows that changes applied are to the original df
-            df.shape
             #perform stemming on the tags column
             df['tags'] = df['tags'].apply(stemming)
 
@@ -48,12 +46,13 @@ class ModelTrainer:
             movie_index = df[df['title'] == movie].index[0]
             distances = similarity_matrix[movie_index]
             movies_list = sorted(list(enumerate(distances)),key = lambda x: x[1], reverse=True)[1:6]
+
+            recommendations = []
             for i in movies_list:
-                print(df['title'][i[0]])
-            
+                recommendations.append(df['title'][i[0]])
             logging.info('Recommendation part completed')
+            return recommendations
             
-        
         except Exception as e:
             raise CustomException(e,sys)
 
