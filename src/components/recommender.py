@@ -8,12 +8,12 @@ from logger import logging
 from utils import stemming, save_obj
 
 #Importing important libraries
-import pandas as pd
-import numpy as np
-import nltk
-from sklearn.feature_extraction.text import CountVectorizer
-from nltk.stem.porter import PorterStemmer
-from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd # type: ignore
+import numpy as np # type: ignore
+import nltk # type: ignore
+from sklearn.feature_extraction.text import CountVectorizer # type: ignore
+from nltk.stem.porter import PorterStemmer # type: ignore
+from sklearn.metrics.pairwise import cosine_similarity # type: ignore
 
 #Model config class
 @dataclass
