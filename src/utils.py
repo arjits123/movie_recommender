@@ -10,6 +10,15 @@ import pandas as pd # type: ignore
 import ast
 import dill # type: ignore
 from nltk.stem.porter import PorterStemmer
+import requests # type: ignore
+
+
+def fetch_poster(movie_id):
+    response  = requests.get("https://api.themoviedb.org/3/movie/{}?api_key=1e81603975601c3b788394aa6b44415f".format(movie_id))
+    data = response.json()
+    path_of_poster = 'https://image.tmdb.org/t/p/w500/' + data['poster_path']
+    return path_of_poster
+
 
 def save_obj(file_path, data_frame):
     try:

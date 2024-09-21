@@ -5,7 +5,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from exception import CustomException
 from logger import logging
-from utils import stemming, save_obj
+from utils import stemming, save_obj, fetch_poster
 
 #Importing important libraries
 import pandas as pd # type: ignore
@@ -48,10 +48,15 @@ class ModelTrainer:
             movies_list = sorted(list(enumerate(distances)),key = lambda x: x[1], reverse=True)[1:11]
 
             recommendations = []
+            recommended_posters = []
             for i in movies_list:
                 recommendations.append(df['title'][i[0]])
+                #fetch poster from tmdb api - 1e81603975601c3b788394aa6b44415f
+                movie_id = df['movie_id'][i[0]]
+                recommended_posters.append(fetch_poster(movie_id = movie_id))
+                
             logging.info('Recommendation part completed')
-            return recommendations
+            return recommendations, recommended_posters
             
         except Exception as e:
             raise CustomException(e,sys)
